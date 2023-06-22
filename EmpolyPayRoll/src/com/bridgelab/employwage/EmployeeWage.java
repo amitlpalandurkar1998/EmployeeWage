@@ -3,10 +3,12 @@ package com.bridgelab.employwage;
 
 public class EmployeeWage {
 
-        public static final int IS_FULL_TIME = 2;
-        public static final int EMPLOYEE_RATE_PER_HOUR = 10;
-        public static final int TOTAL_WORKING_DAYS = 20;
-        public static final int IS_PART_TIME = 1;
+    public static final int IS_FULL_TIME = 2;
+    public static final int EMPLOYEE_RATE_PER_HOUR = 10;
+    public static final int TOTAL_WORKING_DAYS = 20;
+    public static final int IS_PART_TIME = 1;
+
+    public static final int TOTAL_HOUR = 100;
 
 
     public static void main(String[] args) {
@@ -34,10 +36,12 @@ public class EmployeeWage {
                     System.out.println("invalid choice.");
                     break;
             }
-            employeewage=employeehrs*EMPLOYEE_RATE_PER_HOUR;
-            System.out.println(employeewage);
-            emoployeetotalwage+=employeewage;
+
+            if (employeehrs<=TOTAL_HOUR){
+                employeewage = employeehrs * EMPLOYEE_RATE_PER_HOUR;
+                emoployeetotalwage += employeewage;
+            }
         }
-        System.out.println(emoployeetotalwage);
+        System.out.println("Total Employee Wage : "+emoployeetotalwage+" Rs.");
     }
 }
