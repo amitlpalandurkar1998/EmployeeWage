@@ -3,24 +3,14 @@ package com.bridgelab.employwage;
 
 public class EmployeeWage {
 
-    public static final int IS_FULL_TIME = 2;
-    public static final int EMPLOYEE_RATE_PER_HOUR = 10;
-    public static final int TOTAL_WORKING_DAYS = 20;
-    public static final int IS_PART_TIME = 1;
-
-    public static final int TOTAL_HOUR = 100;
     public int employeehrs=0;
     public int employeewage = 0;
     public int emoployeetotalwage=0;
     public int totalEmpHour =0;
 
-    public void calculateEmpWage(){
-
-        //System.out.printf("Welcome to the Employee Wage Computation.");
-
+    public int calculateEmpWage(int EMPLOYEE_RATE_PER_HOUR , int TOTAL_WORKING_DAYS , int TOTAL_HOUR){
 
         for (int i=1; i<=TOTAL_WORKING_DAYS; i++) {
-
 
             int empcheck = (int) Math.floor(Math.random() * 10) % 3;
 
@@ -46,11 +36,20 @@ public class EmployeeWage {
                 emoployeetotalwage += employeewage;
             }
         }
-        System.out.println("Total Employee Wage : "+emoployeetotalwage+" Rs.");
+
+        return emoployeetotalwage;
     }
 
     public static void main(String[] args) {
         EmployeeWage employeeWage = new EmployeeWage();
-        employeeWage.calculateEmpWage();
+
+        //company 1  has its own wage, number of working days && Total hours .
+        int company1 = employeeWage.calculateEmpWage(10,20,100);
+        System.out.println("Company Name 1 : "+company1);
+
+        // company 2  has its own wage, number of working days && Total hours .
+        int company2 = employeeWage.calculateEmpWage(8,22,110);
+        System.out.println("Company Name 2 : "+company2);
+
     }
 }
