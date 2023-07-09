@@ -101,8 +101,7 @@ public class EmployeeWage {
         int totalHour= scanner.nextInt();
         int companyWage =calculateEmpWage(EmployeeRatePerHour,totalWorkingDays,totalHour);
 
-        System.out.println(nameCompany+"       ->"+companyWage+" Rs.");
-        EmployeeWageData employeeWageData = new EmployeeWageData(nameCompany,companyWage);
+        EmployeeWageData employeeWageData = new EmployeeWageData(nameCompany,companyWage,EmployeeRatePerHour,totalWorkingDays,totalHour);
         addEmployeeWage(employeeWageData);
     }
     void exit(){System.out.println("Thank you...............");}
