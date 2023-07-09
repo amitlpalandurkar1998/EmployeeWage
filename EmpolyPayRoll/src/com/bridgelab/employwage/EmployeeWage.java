@@ -1,8 +1,17 @@
 package com.bridgelab.employwage;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class EmployeeWage {
-
+    Scanner scanner = new Scanner(System.in);
+    private final List<EmployeeWageData> saveWage;
+    public EmployeeWage(){
+        saveWage = new ArrayList();
+    }
+    public void addEmployeeWage(EmployeeWageData employeeWageData){
+        saveWage.add(employeeWageData);
+    }
     public int employeehrs=0;
     public int employeewage = 0;
     public int emoployeetotalwage=0;
@@ -36,20 +45,65 @@ public class EmployeeWage {
                 emoployeetotalwage += employeewage;
             }
         }
-
         return emoployeetotalwage;
     }
+    public void firstPage(){
+        System.out.println("\nWellCome To Employee Wage Project.\n");
 
-    public static void main(String[] args) {
-        EmployeeWage employeeWage = new EmployeeWage();
+        while (true){
+            System.out.println("Enter '1' to Add Company and Calculate the Employee Wage.");
+            System.out.println("Enter '2' to Display a contact.");
+            System.out.println("Enter '0' To Exit .");
 
-        //company 1  has its own wage, number of working days && Total hours .
-        int company1 = employeeWage.calculateEmpWage(10,20,100);
-        System.out.println("Company Name 1 : "+company1);
+            System.out.print("\nEnter the input : ");
+            int input = scanner.nextInt();
 
-        // company 2  has its own wage, number of working days && Total hours .
-        int company2 = employeeWage.calculateEmpWage(8,22,110);
-        System.out.println("Company Name 2 : "+company2);
-
+            switch (input) {
+                case 0:
+                    exit();
+                    break;
+                case 1:
+                    addCompany();
+                    break;
+                case 2:
+                    display();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+    public void display(){
+        System.out.println("-----------------------------------------------");
+        if (!saveWage.isEmpty()){
+            for (EmployeeWageData employeeWageData : saveWage) {
+                System.out.println(employeeWageData);
+                System.out.println();
+            }
+        }else {
+            System.out.println("no data found . data base is Empty."+"\n");
+        }
+        System.out.println("-----------------------------------------------");
+    }
+    public void addCompany(){
+        System.out.println("Follow the Formate (Company Xxxx_xxxxx) & Avoid Free Space.");
+        System.out.print("Enter The Name Of Company : ");
+        String nameCompany = scanner.next();
+
+        // ex. int company1 = employeeWage.calculateEmpWage(10,20,100);
+        // ex. int company2 = employeeWage.calculateEmpWage(8,22,110);
+        //company 1  has its own wage, number of working days && Total hours .
+        System.out.print("Enter The Employee Rate Per Hour : ");
+        int EmployeeRatePerHour = scanner.nextInt();
+        System.out.print("Enter The Total Working Days in Month : ");
+        int totalWorkingDays= scanner.nextInt();
+        System.out.print("Enter The Maximum Total Hour of the Month : ");
+        int totalHour= scanner.nextInt();
+        int companyWage =calculateEmpWage(EmployeeRatePerHour,totalWorkingDays,totalHour);
+
+        System.out.println(nameCompany+"       ->"+companyWage+" Rs.");
+        EmployeeWageData employeeWageData = new EmployeeWageData(nameCompany,companyWage);
+        addEmployeeWage(employeeWageData);
+    }
+    void exit(){System.out.println("Thank you...............");}
 }
